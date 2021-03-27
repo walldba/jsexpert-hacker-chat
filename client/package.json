@@ -1,0 +1,11 @@
+{
+  "name": "jsexpert-hacker-chat",
+  "version": "1.0.0",
+  "description": "Projeto construido na 3ª Semana Javascript Expert ministrada pelo Erick Wendel",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wallace Jeronimo",
+  "license": "ISC"
+}
