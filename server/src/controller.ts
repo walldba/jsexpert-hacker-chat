@@ -76,7 +76,7 @@ export default class Controller {
 
   message(socketId: string, message: string) {
     const user = this.users.get(socketId);
-
+    console.log(`${user?.username} said: ${message}`);
     this.broadcast({
       socketId,
       roomId: user?.roomId,
