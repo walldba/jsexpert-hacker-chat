@@ -10,7 +10,7 @@ export default class TerminalController {
   constructor() {}
 
   private _pickColor() {
-    return `# ${(((1 << 24) * Math.random()) | 0).toString(16)}-fg`;
+    return `#` + (((1 << 24) * Math.random()) | 0).toString(16) + "-fg";
   }
 
   private _getUserColor(username: string) {
@@ -27,7 +27,7 @@ export default class TerminalController {
   private _onInputReceived(eventEmitter: EventEmitter) {
     return function (this: any) {
       const message = this.getValue();
-      console.log(message);
+      eventEmitter.emit(constants.events.app.MESSAGE_SENT, message);
       this.clearValue();
     };
   }
@@ -36,35 +36,29 @@ export default class TerminalController {
     return (msg: { username: string; message: string }) => {
       const { username, message } = msg;
       const color = this._getUserColor(username);
-      chat.addItem(`${color}{bold}${username}{/}: ${message}`);
-
+      chat.addItem(`{${color}}{bold}${username}:{/} ${message}`);
       screen.render();
     };
   }
+
   private _onLogChanged({ screen, activityLog }: IComponentBuild) {
     return (msg: string) => {
-      // erickwendel left
-      // erickwendel join
-
-      const [userName] = msg.split(/\s/);
-      const collor = this._getUserColor(userName);
-      activityLog.addItem(`{${collor}}{bold}${msg.toString()}{/}`);
-
+      const [username] = msg.split(/\s/);
+      const color = this._getUserColor(username);
+      activityLog.addItem(`{${color}}{bold}${msg}{/}`);
       screen.render();
     };
   }
+
   private _onStatusChanged({ screen, status }: IComponentBuild) {
     return (users: []) => {
-      // vamos pegar o primeiro elemento da lista
-      const { content } = status.shiftItem();
+      const item = status.shiftItem();
       status.clearItems();
-      status.addItem(content);
-
-      users.forEach((userName) => {
-        const collor = this._getUserColor(userName);
-        status.addItem(`{${collor}}{bold}${userName}{/}`);
+      status.addItem(item.content);
+      users.forEach((username) => {
+        const color = this._getUserColor(username);
+        status.addItem(`{${color}}{bold}${username}{/}`);
       });
-
       screen.render();
     };
   }

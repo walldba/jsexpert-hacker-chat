@@ -27,7 +27,8 @@ export default class ComponentsBuilder {
   setScreen({ title }: { title: string }) {
     this._screen = Blessed.screen({ smartCSR: true, title });
 
-    this._screen.key(["escape", "q", "C-c"], () => process.exit(0));
+    this._screen.key(["escape"], () => process.exit(0));
+
     return this;
   }
 
@@ -68,10 +69,12 @@ export default class ComponentsBuilder {
     this._chat = Blessed.list({
       ...this._baseComponent(),
       parent: this._layout,
+      align: "left",
       width: "50%",
       height: "90%",
-      items: ["{bold}Messenger{/}"],
+      items: ["{bold}Message{/}"],
     });
+
     return this;
   }
 
@@ -81,7 +84,7 @@ export default class ComponentsBuilder {
       parent: this._layout,
       width: "25%",
       height: "90%",
-      items: ["{bold}Users on Room{/}"],
+      items: ["{bold}Users in room{/}"],
     });
     return this;
   }
