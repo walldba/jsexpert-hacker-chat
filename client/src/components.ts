@@ -47,7 +47,7 @@ export default class ComponentsBuilder {
     const input = Blessed.textarea({
       parent: this._screen,
       bottom: 0,
-      width: "10%",
+      height: "10%",
       inputOnFocus: true,
       padding: {
         top: 1,
@@ -72,7 +72,7 @@ export default class ComponentsBuilder {
       align: "left",
       width: "50%",
       height: "90%",
-      items: ["{bold}Message{/}"],
+      items: ["{bold}Messenger{/}"],
     });
 
     return this;
