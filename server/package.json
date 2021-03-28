@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node src/",
-    "dev": "npx nodemon src/",
+    "dev": "npx ts-node-dev src/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

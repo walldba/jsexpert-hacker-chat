@@ -20,6 +20,7 @@ export default class Controller {
   onNewConnection(socket: ISocket) {
     const { id } = socket;
     const userData: User = { id, socket };
+    console.log("connection stablished with", id);
 
     this.updateGlobalUserData(id, userData);
 
