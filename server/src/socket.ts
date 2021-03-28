@@ -3,12 +3,18 @@ import Event from "events";
 import { Server } from "http";
 import { v4 } from "uuid";
 import { constants } from "./constants";
+import ISocket from "./interfaces/ISocket";
 
 export default class SocketServer {
   port: number;
 
   constructor({ port }: { port: number }) {
     this.port = port;
+  }
+
+  async sendMessage(socket: ISocket | undefined, event: string, message: any) {
+    const data = JSON.stringify({ event, message });
+    socket?.write(`${data}\n`);
   }
 
   async initialize(eventEmitter: Event): Promise<Server> {
