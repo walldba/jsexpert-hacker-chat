@@ -12,10 +12,10 @@ async function main() {
   console.log(server?.address());
 }
 
+main();
+
 const controller = new Controller(socketServer);
 eventEmitter.on(
   constants.event.NEW_USER_CONNECTED,
   controller.onNewConnection.bind(controller)
 );
-
-main();

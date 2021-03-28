@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only index.ts",
-    "user01": "ts-node-dev index.ts --username rafael --room  01 --hostUri http://localhost:9898",
-    "user02": "ts-node-dev index.ts --username joao --room  01 --hostUri http://localhost:9898"
+    "user01": "ts-node-dev index.ts --username Wallace --room  01 --hostUri http://localhost:9898",
+    "user02": "ts-node-dev index.ts --username Jeronimo --room  01 --hostUri http://localhost:9898",
+    "user03": "ts-node-dev index.ts --username Admin --room  01 --hostUri http://localhost:9898",
+    "user04": "ts-node-dev index.ts --username Alex --room  01 --hostUri http://localhost:9898"
   },
   "author": "Wallace Jeronimo",
   "license": "ISC",

@@ -1,7 +1,7 @@
 import Blessed from "blessed";
 import IComponentBuild from "./interfaces/IComponentBuild";
 
-export default class ComponentsBuilder {
+export default class ComponentBuilder {
   private _screen!: Blessed.Widgets.Screen;
   private _layout!: Blessed.Widgets.LayoutElement;
   private _input!: Blessed.Widgets.TextareaElement;
@@ -25,13 +25,15 @@ export default class ComponentsBuilder {
   }
 
   setScreen({ title }: { title: string }) {
-    this._screen = Blessed.screen({ smartCSR: true, title });
+    this._screen = Blessed.screen({
+      smartCSR: true,
+      title,
+    });
 
     this._screen.key(["escape"], () => process.exit(0));
 
     return this;
   }
-
   setLayoutComponent() {
     this._layout = Blessed.layout({
       parent: this._screen,
@@ -72,7 +74,7 @@ export default class ComponentsBuilder {
       align: "left",
       width: "50%",
       height: "90%",
-      items: ["{bold}Messenger{/}"],
+      items: ["{bold}Message{/}"],
     });
 
     return this;
@@ -107,7 +109,6 @@ export default class ComponentsBuilder {
       screen: this._screen,
       input: this._input,
       chat: this._chat,
-      layout: this._layout,
       status: this._status,
       activityLog: this._activityLog,
     };
