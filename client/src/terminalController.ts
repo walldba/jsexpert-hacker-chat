@@ -1,5 +1,6 @@
 import EventEmitter from "events";
-import ComponentsBuilder from "./components";
+
+import ComponentBuilder from "./components";
 import IComponentBuild from "./interfaces/IComponentBuild";
 
 import { constants } from "./constants";
@@ -8,11 +9,6 @@ export default class TerminalController {
   private _userColors = new Map();
 
   constructor() {}
-
-  private _pickColor() {
-    return `#` + (((1 << 24) * Math.random()) | 0).toString(16) + "-fg";
-  }
-
   private _getUserColor(username: string) {
     if (this._userColors.has(username)) {
       return this._userColors.get(username);
@@ -22,6 +18,10 @@ export default class TerminalController {
     this._userColors.set(username, color);
 
     return color;
+  }
+
+  private _pickColor() {
+    return `#` + (((1 << 24) * Math.random()) | 0).toString(16) + "-fg";
   }
 
   private _onInputReceived(eventEmitter: EventEmitter) {
@@ -82,8 +82,8 @@ export default class TerminalController {
   }
 
   async initializeTable(eventEmitter: EventEmitter) {
-    const components = new ComponentsBuilder()
-      .setScreen({ title: "Hacker Chat - Wall" })
+    const components = new ComponentBuilder()
+      .setScreen({ title: "Hacker-chat - Wall" })
       .setLayoutComponent()
       .setInputComponent(this._onInputReceived(eventEmitter))
       .setChatComponent()
